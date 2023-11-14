@@ -1,4 +1,4 @@
-export const host = "https://chat-app-api-lilac.vercel.app";
+export const host = "https://chat-app-backend-enhw.onrender.com";
 export const loginRoute = `${host}/api/auth/login`;
 export const registerRoute = `${host}/api/auth/register`;
 export const setAvatarRoute = `${host}/api/auth/setavatar`;
