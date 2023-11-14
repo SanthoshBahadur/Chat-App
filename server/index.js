@@ -11,7 +11,13 @@ require("dotenv").config();
 // The line require("dotenv").config();
 // is typically used in Node.js applications to load environment variables from a .env file
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://chat-applicaton-khaki.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use("/api/auth", userRoutes);
