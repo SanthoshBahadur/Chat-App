@@ -74,7 +74,7 @@ const Container = styled.div`
   overflow: hidden;
   background-color: #080420;
   @media screen and (max-width: 420px) {
-    grid-template-rows: 10% 70% 20%;
+    grid-template-rows: 15% 78% 7%;
   }
   .brand {
     display: flex;

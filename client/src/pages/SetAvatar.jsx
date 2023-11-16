@@ -6,7 +6,7 @@ import { Buffer } from "buffer";
 import "react-toastify/dist/ReactToastify.min.css";
 import axios from "axios";
 import { setAvatarRoute } from "../utils/APIRoutes";
- 
+
 function SetAvatar() {
   const api = "https://api.multiavatar.com/4645646";
   const navigate = useNavigate();
@@ -21,43 +21,35 @@ function SetAvatar() {
     theme: "dark",
   };
 
-
-  useEffect(()=>{
+  useEffect(() => {
     if (!localStorage.getItem("chat-app-user")) {
-      navigate("/login")
+      navigate("/login");
     }
-  },[navigate])
-  // might need to remove navigate 
+  }, [navigate]);
+  // might need to remove navigate
 
   useEffect(() => {
     async function fetchData() {
-  
-        const data = [];
-        for (let i = 0; i < 4; i++) {
-          const image = await axios.get(
-            `${api}/${Math.round(Math.random() * 1000)}`
-          );
-          const buffer = new Buffer(image.data);
-          data.push(buffer.toString("base64"));
-        }
-        setAvatars(data);
-        setIsLoading(false);
-    
-       
-     
+      const data = [];
+      for (let i = 0; i < 4; i++) {
+        const image = await axios.get(
+          `${api}/${Math.round(Math.random() * 1000)}`
+        );
+        const buffer = new Buffer(image.data);
+        data.push(buffer.toString("base64"));
+      }
+      setAvatars(data);
+      setIsLoading(false);
     }
 
     fetchData();
   }, []);
 
   const setProfilePicture = async () => {
-
     if (selectedAvatar === undefined) {
       toast.error("Select a profile picture", toastDesign);
     } else {
-      const user = await JSON.parse(
-        localStorage.getItem("chat-app-user")
-      );
+      const user = await JSON.parse(localStorage.getItem("chat-app-user"));
 
       const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
         image: avatars[selectedAvatar],
@@ -68,9 +60,8 @@ function SetAvatar() {
         user.avatarImage = data.image;
         localStorage.setItem("chat-app-user", JSON.stringify(user));
         navigate("/");
-      }
-      else{
-        toast.error("error setting avatar, please try again!",toastDesign)
+      } else {
+        toast.error("error setting avatar, please try again!", toastDesign);
       }
     }
     // error over here
@@ -78,7 +69,6 @@ function SetAvatar() {
 
   return (
     <>
-      {" "}
       {isLoading ? (
         <Container>
           <h1>Loading...</h1>
@@ -121,6 +111,16 @@ const Container = styled.div`
     color: white;
     font-size: 2rem;
   }
+  @media screen and (max-width: 420px) {
+    .title-container {
+      h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        padding: 0 2rem;
+      }
+    }
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,6 +154,15 @@ const Container = styled.div`
     }
     .selected {
       border: 0.4rem solid #4e0eff;
+    }
+    @media screen and (max-width: 420px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      .avatar {
+        img {
+          height: 4rem;
+        }
+      }
     }
   }
   .submit-btn {

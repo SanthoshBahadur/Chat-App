@@ -18,6 +18,8 @@ export default function ChatInput({ handleSendMsg }) {
     setMsg(message);
   };
 
+  // this might work if in case the below code doesnt work
+
   // const handleEmojiClick = (event, emojiObject) => {
   //   let message = msg;
   //   message += emojiObject.emoji;
@@ -62,7 +64,6 @@ const Container = styled.div`
   padding: 0 5rem;
   gap: 1rem;
   @media screen and (max-width: 420px) {
-    padding-bottom: 4rem;
     grid-template-columns: 3% 95%;
     padding: 0 2rem;
     gap: 2rem;
@@ -75,9 +76,7 @@ const Container = styled.div`
     display: flex;
 
     color: white;
-    @media screen and (max-width: 420px) {
-      margin-bottom: 4rem;
-    }
+
     .emoji {
       position: relative;
       svg {
@@ -121,9 +120,7 @@ const Container = styled.div`
     align-items: center;
     gap: 2rem;
     background-color: #ffffff34;
-    @media screen and (max-width: 420px) {
-      margin-bottom: 4rem;
-    }
+
     input {
       width: 90%;
       height: 60%;
