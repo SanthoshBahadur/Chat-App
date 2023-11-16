@@ -5,8 +5,7 @@ import Logo from "../assets/bitcoin.png";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import axios from "axios";
-import { loginRoute} from "../utils/APIRoutes";
-
+import { loginRoute } from "../utils/APIRoutes";
 
 function Login() {
   const navigate = useNavigate();
@@ -24,12 +23,12 @@ function Login() {
     password: "",
   });
 
-useEffect(()=>{
-  if (localStorage.getItem("chat-app-user")) {
-    navigate("/")
-  }
-// eslint-disable-next-line react-hooks/exhaustive-deps
-},[]);
+  useEffect(() => {
+    if (localStorage.getItem("chat-app-user")) {
+      navigate("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleValidation = () => {
     const { password, username } = values;
@@ -116,21 +115,22 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #131324;
-  .brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-
-    img {
-      width: 5rem;
-    }
-    h1 {
-      color: white;
-      text-transform: uppercase;
-    }
-  }
   form {
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+
+      img {
+        width: 5rem;
+      }
+      h1 {
+        color: white;
+        text-transform: uppercase;
+      }
+    }
+
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -176,6 +176,24 @@ const FormContainer = styled.div`
         color: #4e0eff;
         text-decoration: none;
         font-weight: bold;
+      }
+    }
+    @media screen and (max-width: 420px) {
+      width: 50vw;
+      .brand {
+        img {
+          width: 3rem;
+        }
+      }
+      input {
+        width: 120%;
+      }
+      button {
+        width: 130%;
+      }
+      span {
+        width: 120%;
+        font-size: 0.7rem;
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { allUsersRoute, host } from "../utils/APIRoutes";
@@ -6,8 +6,7 @@ import axios from "axios";
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome";
 import ChatContainer from "../components/ChatContainer";
-import {io} from "socket.io-client"
-
+import { io } from "socket.io-client";
 
 function Chat() {
   const socket = useRef();
@@ -17,6 +16,7 @@ function Chat() {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
 
+  // const [active, setActive] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -28,17 +28,15 @@ function Chat() {
       }
     }
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(()=>{
-    if(currentUser){
+  useEffect(() => {
+    if (currentUser) {
       socket.current = io(host);
-      socket.current.emit("add-user", currentUser._id)
+      socket.current.emit("add-user", currentUser._id);
     }
-  },[currentUser])
-
- 
+  }, [currentUser]);
 
   useEffect(() => {
     async function setData() {
@@ -53,8 +51,6 @@ function Chat() {
     }
     setData();
   }, [currentUser, navigate]);
-
-
 
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
@@ -72,7 +68,11 @@ function Chat() {
         {isLoaded && currentChat === undefined ? (
           <Welcome currentUser={currentUser} />
         ) : (
-          <ChatContainer currentChat={currentChat} currentUser={currentUser} socket={socket }/>
+          <ChatContainer
+            currentChat={currentChat}
+            currentUser={currentUser}
+            socket={socket}
+          />
         )}
       </div>
     </Container>
@@ -88,15 +88,20 @@ const Container = styled.div`
   gap: 1rem;
   flex-direction: column;
   background-color: #131324;
+
   .container {
     /* border-radius: 3rem; */
     height: 100vh;
+
     width: 100vw;
     background-color: #00000076;
     display: grid;
     grid-template-columns: 25% 75%;
     @media screen and (min-width: 720px) and (max-width: 1080px) {
       grid-template-columns: 35% 65%;
+    }
+    @media screen and (max-width: 420px) {
+      grid-template-columns: 15% 85%;
     }
   }
 `;

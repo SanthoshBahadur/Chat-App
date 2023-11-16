@@ -5,20 +5,24 @@ import { IoMdSend } from "react-icons/io";
 import { BsEmojiSmileFill } from "react-icons/bs";
 
 export default function ChatInput({ handleSendMsg }) {
-  
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [msg, setMsg] = useState("");
-
 
   const handleEmojiPickerhideShow = () => {
     setShowEmojiPicker(!showEmojiPicker);
   };
 
-   const handleEmojiClick = (emoji) => {
-     let message = msg;
-    message += emoji.emoji;
-     setMsg(message);
-  }; 
+  // const handleEmojiClick = (emoji) => {
+  //   let message = msg;
+  //   message += emoji.emoji;
+  //   setMsg(message);
+  // }; this might work if in case the below code doesnt work
+
+  const handleEmojiClick = (event, emojiObject) => {
+    let message = msg;
+    message += emojiObject.emoji;
+    setMsg(message);
+  };
 
   const sendChat = (event) => {
     event.preventDefault();
@@ -28,8 +32,6 @@ export default function ChatInput({ handleSendMsg }) {
     }
   };
 
-
-  
   return (
     <Container>
       <div className="button-container">
@@ -57,16 +59,25 @@ const Container = styled.div`
   align-items: center;
   grid-template-columns: 5% 95%;
   background-color: #080420;
-  padding: 0 2rem;
+  padding: 0 5rem;
+  gap: 1rem;
+  @media screen and (max-width: 420px) {
+    padding-bottom: 4rem;
+    grid-template-columns: 3% 95%;
+    padding: 0 2rem;
+    gap: 2rem;
+  }
   @media screen and (min-width: 720px) and (max-width: 1080px) {
     padding: 0 1rem;
     gap: 1rem;
   }
   .button-container {
     display: flex;
-    align-items: center;
+
     color: white;
-    gap: 1rem;
+    @media screen and (max-width: 420px) {
+      margin-bottom: 4rem;
+    }
     .emoji {
       position: relative;
       svg {
@@ -104,12 +115,15 @@ const Container = styled.div`
     }
   }
   .input-container {
-    width: 100%;
+    width: 95%;
     border-radius: 2rem;
     display: flex;
     align-items: center;
     gap: 2rem;
     background-color: #ffffff34;
+    @media screen and (max-width: 420px) {
+      margin-bottom: 4rem;
+    }
     input {
       width: 90%;
       height: 60%;

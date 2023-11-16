@@ -5,7 +5,7 @@ import Logo from "../assets/bitcoin.png";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import axios from "axios";
-import {  registerRoute } from "../utils/APIRoutes";
+import { registerRoute } from "../utils/APIRoutes";
 function Register() {
   const navigate = useNavigate();
   const toastDesign = {
@@ -46,19 +46,17 @@ function Register() {
     return true;
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     if (localStorage.getItem("chat-app-user")) {
-      navigate("/")
+      navigate("/");
     }
-  },[navigate])
-
+  }, [navigate]);
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
   // event.target.value: This gives you the value (what you typed)
   // in the element that triggered the event.
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -79,7 +77,7 @@ function Register() {
         }
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   return (
@@ -141,21 +139,22 @@ const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #131324;
-  .brand {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-
-    img {
-      width: 5rem;
-    }
-    h1 {
-      color: white;
-      text-transform: uppercase;
-    }
-  }
   form {
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+
+      img {
+        width: 5rem;
+      }
+      h1 {
+        color: white;
+        text-transform: uppercase;
+      }
+    }
+
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -201,6 +200,24 @@ const FormContainer = styled.div`
         color: #4e0eff;
         text-decoration: none;
         font-weight: bold;
+      }
+    }
+    @media screen and (max-width: 420px) {
+      width: 50vw;
+      .brand {
+        img {
+          width: 3rem;
+        }
+      }
+      input {
+        width: 120%;
+      }
+      button {
+        width: 130%;
+      }
+      span {
+        width: 120%;
+        font-size: 0.7rem;
       }
     }
   }

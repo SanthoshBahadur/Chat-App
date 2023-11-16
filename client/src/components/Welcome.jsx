@@ -18,6 +18,18 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   color: white;
+  h1 {
+    text-align: center;
+  }
+  @media screen and (max-width: 420px) {
+    padding: 2rem;
+    h1 {
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+    }
+  }
   span {
     color: #4e00ff;
   }

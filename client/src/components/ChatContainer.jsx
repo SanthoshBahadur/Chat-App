@@ -24,8 +24,6 @@ export default function ChatContainer({ currentChat, socket }) {
     setResponse();
   }, [currentChat]);
 
-
-
   useEffect(() => {
     const getCurrentChat = async () => {
       if (currentChat) {
@@ -35,11 +33,9 @@ export default function ChatContainer({ currentChat, socket }) {
     getCurrentChat();
   }, [currentChat]);
 
-
-  
   const handleSendMsg = async (msg) => {
     const data = await JSON.parse(localStorage.getItem("chat-app-user"));
-   
+
     socket.current.emit("send-msg", {
       to: currentChat._id,
       from: data._id,
@@ -56,7 +52,6 @@ export default function ChatContainer({ currentChat, socket }) {
     msgs.push({ fromSelf: true, message: msg });
     setMessages(msgs);
   };
-
 
   //
   useEffect(() => {
@@ -119,9 +114,12 @@ export default function ChatContainer({ currentChat, socket }) {
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: 10% 75% 15%;
   gap: 0.1rem;
   overflow: hidden;
+  @media screen and (max-width: 420px) {
+    grid-template-rows: 10% 70% 20%;
+  }
   @media screen and (min-width: 720px) and (max-width: 1080px) {
     grid-template-rows: 15% 70% 15%;
   }
