@@ -164,6 +164,15 @@ const Container = styled.div`
         color: white;
       }
     }
+    @media screen and (max-width: 420px) {
+      margin-top: 1.5rem;
+      margin-right: 6rem;
+      .username {
+        h2 {
+          display: none;
+        }
+      }
+    }
     @media screen and (min-width: 720px) and (max-width: 1080px) {
       gap: 0.5rem;
       .username {
