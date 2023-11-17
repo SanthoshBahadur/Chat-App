@@ -165,7 +165,6 @@ const Container = styled.div`
       }
     }
     @media screen and (max-width: 420px) {
-      margin-top: 1.5rem;
       margin-right: 6rem;
       .username {
         h2 {
