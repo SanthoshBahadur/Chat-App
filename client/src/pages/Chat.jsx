@@ -81,13 +81,17 @@ function Chat() {
 
 const Container = styled.div`
   width: 100vw;
-  height: 95vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   flex-direction: column;
   background-color: #131324;
+  @media screen and (max-width: 420px) {
+    width: 100vw;
+    height: 95vh;
+  }
 
   .container {
     /* border-radius: 3rem; */
